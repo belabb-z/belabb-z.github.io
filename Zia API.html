@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zia API</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="zia-api"><strong>ZIA API</strong></h1>
+
+<p><strong>The following document describes our <em><strong>API</strong></em> proposition for the Zia project.</strong></p>
+
+<p>Group Leader: Eloi Bréhin</p>
+
+<hr>
+
+<p><div class="toc">
+<ul>
+<li><a href="#zia-api">ZIA API</a><ul>
+<li><a href="#configuration-file">Configuration file</a><ul>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#routing">Routing</a></li>
+</ul>
+</li>
+<li><a href="#programming-modules">Programming Modules</a><ul>
+<li><a href="#entry-points">Entry Points</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
+
+
+
+<h2 id="configuration-file"><i class="icon-file"></i>&nbsp;<strong>Configuration file</strong></h2>
+
+<p>The configuration file uses the <strong>XML syntax</strong> (HTML-like), with the tags as defined below. It must be called <code>zia_conf.xml</code>  and must be in the same directory as the Zia executable. All <code>path</code> atributes are <strong>evaluated</strong> from the <strong>Zia executable location</strong>.</p>
+
+<p><em>Any tag that is not refered to by this document should be ignored.</em></p>
+
+<p>We are using the <a href="https://kokkachiprogramming.wordpress.com/2012/11/23/using-tinyxml2-for-xml-parsing-in-c/">TinyXML2</a> library to parse the file, it is very simple to use.</p>
+
+<p>You may write your tags wherever you want.</p>
+
+<p><em><strong>Reminder:</strong> The configuration must be alterable at runtime ; check “man 7 inotify” for Linux and LoadLibrary / GetProcAddress for Windows.</em></p>
+
+<hr>
+
+<h3 id="modules">Modules</h3>
+
+<p>First, you will need to declare which <strong>modules</strong> you will use for <strong>your server</strong>. Here is how to do it:</p>
+
+
+
+<pre class="prettyprint"><code class="language-xml hljs "><span class="hljs-tag">&lt;<span class="hljs-title">module</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"&lt;MODULE_NAME&gt;"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"&lt;PATH_TO_MODULE&gt;"</span> <span class="hljs-attribute">entry_points</span>=<span class="hljs-value">"&lt;ENTRY_POINTS&gt;"</span>/&gt;</span></code></pre>
+
+<p>You must use a <code>&lt;module /&gt;</code> tag for <strong>each module</strong> you declare. Your modules must be compiled shared library files, following the modules <a href="#programming-modules">programming rules.</a></p>
+
+<blockquote>
+  <p><strong>Definitions:</strong></p>
+  
+  <ul>
+  <li><em><strong>MODULE_NAME</strong></em> is the name of the module. You will use it to refer to the module in this file.<br><br></li>
+  <li><em><strong>PATH_TO_MODULE</strong></em> (optional) is the relative path to the module <em>from the Zia executable</em>. It must point to the <strong>.so/.dll file</strong> of your compiled module. <br>
+  You may <strong>omit the extension</strong> of the binary file for a portable <code>zia_conf.xml</code> . Therefore the file(s) <strong>must be named with the correct extension(s)</strong>, otherwise the module will not load.<br><br></li>
+  <li><em><strong>ENTRY_POINTS</strong></em> is a list of the <strong>function names</strong> you want to use as entry points for your <strong>module</strong>. They must be separated by spaces or tabs. <br>
+  An <strong>entry point</strong> is a <strong>function</strong> that is part of your module. It must have a <strong>particular signature</strong>, which will be explained later in this document. <br>
+  There must be at least one entry point defined for each module.</li>
+  </ul>
+</blockquote>
+
+<hr>
+
+<blockquote>
+  <p><strong>Example:</strong></p>
+  
+  <pre class="prettyprint"><code class="language-xml hljs "><span class="hljs-tag">&lt;<span class="hljs-title">module</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"cgi"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"../modules/module_cgi"</span> <span class="hljs-attribute">entry_points</span>=<span class="hljs-value">"execCGI"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">module</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"sendData"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"../modules/module_sendData"</span> <span class="hljs-attribute">entry_points</span>=<span class="hljs-value">"comments notifs messages"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">module</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"hide"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"../modules/module_hide"</span> <span class="hljs-attribute">entry_points</span>=<span class="hljs-value">"badLanguage links"</span> /&gt;</span></code></pre>
+</blockquote>
+
+<hr>
+
+<blockquote>
+  <p><i class="icon-info-circled"></i><strong>Important !</strong></p>
+  
+  <p><strong>Modules and entry points</strong> must only include <strong>non-accentuated letters and numbers</strong> in their names.</p>
+</blockquote>
+
+<hr>
+
+<h3 id="routing">Routing</h3>
+
+<p>To setup your <strong>routes</strong>, use the <strong>syntax</strong> below:</p>
+
+
+
+<pre class="prettyprint"><code class="language-xml hljs "><span class="hljs-tag">&lt;<span class="hljs-title">route</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"&lt;METHOD&gt;"</span> <span class="hljs-attribute">uri</span>=<span class="hljs-value">"&lt;REGEX_URI&gt;"</span> <span class="hljs-attribute">modules</span>=<span class="hljs-value">"&lt;MODULES&gt;"</span>/&gt;</span></code></pre>
+
+<p>You may use as many <code>&lt;route /&gt;</code> tags as you like.</p>
+
+<p>A GET request that is not handled by your routes will serve the corresponding resource pointed by the request URI in the <code>../public</code> directory relatively to the Zia executable. <br>
+<br></p>
+
+<blockquote>
+  <p><strong>Definitions:</strong> </p>
+  
+  <ul>
+  <li><em><strong>METHOD</strong></em> is any <strong>HTTP method</strong> you want (<strong>case sensitive</strong>, standard methods are uppercase).<br><br></li>
+  <li><p><em><strong>REGEX_URI</strong></em> is a C++ style <strong>regex matching the uri(s)</strong> you want to use for this route. <br>
+  Query string parameters won’t be taken into account here.<br><br></p></li>
+  <li><p><em><strong>MODULES</strong></em> is a list of the modules, <em>separated by spaces or tabs</em>, that <strong>shall be called upon receipt of a matching request.</strong> <br>
+  For each module, you must provide the <strong>entry point</strong> you are using between <strong>brackets</strong> (<code>[]</code>). <br>
+  The module’s entry points will be <strong>executed in the given order</strong> ; you should take care of this, as a module can <strong>pass data to the next called modules</strong>. A module can be called several times in the same route, with any of its entry points.</p></li>
+  </ul>
+</blockquote>
+
+<hr>
+
+<blockquote>
+  <p><strong>Example:</strong></p>
+  
+  <pre class="prettyprint"><code class="language-xml hljs "><span class="hljs-tag">&lt;<span class="hljs-title">route</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"GET"</span> <span class="hljs-attribute">uri</span>=<span class="hljs-value">"/cgi-bin/(.+)"</span> <span class="hljs-attribute">modules</span>=<span class="hljs-value">"cgi[execCGI]"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">route</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"GET"</span> <span class="hljs-attribute">uri</span>=<span class="hljs-value">"/comments"</span> <span class="hljs-attribute">modules</span>=<span class="hljs-value">"sendData[comments] hide[badLanguage] hide[links]"</span> /&gt;</span></code></pre>
+</blockquote>
+
+<hr>
+
+
+
+<h2 id="programming-modules"><i class="icon-code"></i>&nbsp;<strong>Programming Modules</strong></h2>
+
+<p>The following part describes how <strong>Zia modules</strong> are supposed to be developped.</p>
+
+<hr>
+
+<h3 id="entry-points">Entry Points</h3>
+
+<p><strong>Entry points</strong> must have the following <strong>prototype</strong>:</p>
+
+
+
+<pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> Response *entry_point(<span class="hljs-keyword">const</span> Request &amp;req, Response &amp;res, <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span> args);</code></pre>
+
+<p>They should <code>return (&amp;res);</code> so you can pass data to other modules, but it is not mandatory. <br>
+The <code>Response</code> and <code>Request</code> <strong>classes</strong> must <strong>provide those functions</strong>:  <br>
+<br></p>
+
+
+
+<pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Response {
+    <span class="hljs-keyword">int</span>                     getStatusCode() <span class="hljs-keyword">const</span>;
+    <span class="hljs-keyword">void</span>                    setStatusCode(<span class="hljs-keyword">int</span> statusCode);
+
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getStatusStr() <span class="hljs-keyword">const</span>;
+    <span class="hljs-keyword">void</span>                    setStatusStr(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; status);
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span>    getHeaders() <span class="hljs-keyword">const</span>;
+    <span class="hljs-keyword">void</span>                    setHeaders(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, 
+                                             <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span>&amp; headers);
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;);
+    <span class="hljs-keyword">void</span>                    setHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; header,
+                                      <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; value);
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
+    <span class="hljs-keyword">void</span>                    setBody(<span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span> body);
+};</code></pre>
+
+<hr>
+
+
+
+<pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Request {
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getUri() <span class="hljs-keyword">const</span>;
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span>  getQueryString() <span class="hljs-keyword">const</span>;
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getMethod() <span class="hljs-keyword">const</span>;
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span>  getHeaders() <span class="hljs-keyword">const</span>;
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;filter) <span class="hljs-keyword">const</span>;
+
+    <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
+};</code></pre></div></body>
+</html>
