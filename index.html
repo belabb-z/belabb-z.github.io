@@ -1,14 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zia API</title>
-<link rel="stylesheet" href="https://stackedit.io/res-min/themes/blue.css" />
-<link rel="icon" href="favicon.ico" />
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-</head>
-<body><div class="container"><h1 id="zia-api"><strong>ZIA API</strong></h1>
+<h1 id="zia-api"><strong>ZIA API</strong></h1>
 
 <p><strong>The following document describes our <em><strong>API</strong></em> proposition for the Zia project.</strong></p>
 
@@ -19,12 +9,12 @@
 <p><div class="toc">
 <ul>
 <li><a href="#zia-api">ZIA API</a><ul>
-<li><a href="#configuration-file">Configuration file</a><ul>
+<li><a href="#configuration-file">&nbsp;Configuration file</a><ul>
 <li><a href="#modules">Modules</a></li>
 <li><a href="#routing">Routing</a></li>
 </ul>
 </li>
-<li><a href="#programming-modules">Programming Modules</a><ul>
+<li><a href="#programming-modules">&nbsp;Programming Modules</a><ul>
 <li><a href="#entry-points">Entry Points</a></li>
 </ul>
 </li>
@@ -49,6 +39,8 @@
 <p><em><strong>Reminder:</strong> The configuration must be alterable at runtime ; check “man 7 inotify” for Linux and LoadLibrary / GetProcAddress for Windows.</em></p>
 
 <hr>
+
+
 
 <h3 id="modules">Modules</h3>
 
@@ -92,6 +84,8 @@
 </blockquote>
 
 <hr>
+
+
 
 <h3 id="routing">Routing</h3>
 
@@ -137,6 +131,8 @@
 <p>The following part describes how <strong>Zia modules</strong> are supposed to be developped.</p>
 
 <hr>
+
+
 
 <h3 id="entry-points">Entry Points</h3>
 
@@ -188,5 +184,4 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;filter) <span class="hljs-keyword">const</span>;
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
-};</code></pre></div></body>
-</html>
+};</code></pre>
