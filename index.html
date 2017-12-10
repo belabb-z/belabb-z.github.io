@@ -93,7 +93,7 @@
 
 <p>You may use as many <code>&lt;route /&gt;</code> tags as you like.</p>
 
-<p>A GET request that is not handled by your routes will serve the corresponding resource pointed by the request URI in the <code>../public</code> directory relatively to the Zia executable. <br>
+<p>A GET request that is not handled by your routes will serve the corresponding resource pointed by the request URI in the <code>./public</code> directory relatively to the Zia executable. <br>
 <br></p>
 
 <blockquote>
@@ -102,7 +102,7 @@
   <ul>
   <li><em><strong>METHOD</strong></em> is any <strong>HTTP method</strong> you want (<strong>case sensitive</strong>, standard methods are uppercase).<br><br></li>
   <li><p><em><strong>REGEX_URI</strong></em> is a C++ style <strong>regex matching the uri(s)</strong> you want to use for this route. <br>
-  Query string parameters won’t be taken into account here.<br><br></p></li>
+  <strong>Query string parameters</strong> won’t be taken into account here, and will be <strong>passed as arguments</strong> to the <strong>entry point</strong>.<br><br></p></li>
   <li><p><em><strong>MODULES</strong></em> is a list of the modules, <em>separated by spaces or tabs</em>, that <strong>shall be called upon receipt of a matching request.</strong> <br>
   For each module, you must provide the <strong>entry point</strong> you are using between <strong>brackets</strong> (<code>[]</code>). <br>
   The module’s entry points will be <strong>executed in the given order</strong> ; you should take care of this, as a module can <strong>pass data to the next called modules</strong>. A module can be called several times in the same route, with any of its entry points.</p></li>
@@ -119,8 +119,6 @@
 </blockquote>
 
 <hr>
-
-
 
 <h2 id="programming-modules"><i class="icon-code"></i>&nbsp;<strong>Programming Modules</strong></h2>
 
@@ -145,6 +143,7 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
 
 
 <pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Response {
+
     <span class="hljs-keyword">int</span>                     getStatusCode() <span class="hljs-keyword">const</span>;
     <span class="hljs-keyword">void</span>                    setStatusCode(<span class="hljs-keyword">int</span> statusCode);
 
@@ -159,16 +158,17 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;);
     <span class="hljs-keyword">void</span>                    setHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; header,
                                       <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; value);
+    <span class="hljs-keyword">void</span>                    removeHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; header);
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
     <span class="hljs-keyword">void</span>                    setBody(<span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span> body);
+
 };</code></pre>
 
 <hr>
 
-
-
 <pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Request {
+
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getUri() <span class="hljs-keyword">const</span>;
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">unordered_map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span>  getQueryString() <span class="hljs-keyword">const</span>;
@@ -180,4 +180,5 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;filter) <span class="hljs-keyword">const</span>;
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
+
 };</code></pre>
