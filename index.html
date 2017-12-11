@@ -66,7 +66,7 @@
   
   <ul>
   <li><em><strong>MODULE_NAME</strong></em> is the name of the module. You will use it to refer to the module in this file.<br><br></li>
-  <li><em><strong>PATH_TO_MODULE</strong></em> (optional) is the relative path to the module <em>from the Zia executable</em>. It must point to the <strong>.so/.dll file</strong> of your compiled module. <br>
+  <li><em><strong>PATH_TO_MODULE</strong></em>  is the relative path to the module <em>from the Zia executable</em>. It must point to the <strong>.so/.dll file</strong> of your compiled module. <br>
   You <em>should</em> <strong>omit the extension</strong> of the binary file for a portable <code>zia_conf.xml</code> . Therefore the file(s) <strong>must be named with the correct extension(s)</strong>, otherwise the module will not load.<br><br></li>
   <li><em><strong>ENTRY_POINTS</strong></em> is a list of the <strong>function names</strong> you want to use as entry points for your <strong>module</strong>. They must be separated by spaces or tabs. <br>
   An <strong>entry point</strong> is a <strong>function</strong> that is part of your module. It must have a <strong>particular signature</strong>, which will be explained later in this document. <br>
@@ -74,7 +74,7 @@
   </ul>
 </blockquote>
 
-<p>You <strong>should not</strong> launch the server if a module </p>
+<p>You <strong>should not</strong> begin to listen for connections if a module is missing.</p>
 
 <hr>
 
@@ -95,8 +95,6 @@
 </blockquote>
 
 <hr>
-
-
 
 <h3 id="routing">Routing</h3>
 
@@ -181,7 +179,6 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
     <span class="hljs-keyword">void</span>                    setBody(<span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span> body);
 
     <span class="hljs-keyword">void</span>                    send100() <span class="hljs-keyword">const</span>;
-    <span class="hljs-keyword">void</span>                    send101() <span class="hljs-keyword">const</span>;
 
 };</code></pre>
 
