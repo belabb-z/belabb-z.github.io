@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zia API</title>
-<link rel="stylesheet" href="https://stackedit.io/res-min/themes/blue.css" />
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body><div class="container"><h1 id="zia-api"><strong>ZIA API</strong></h1>
@@ -96,6 +96,8 @@
 
 <hr>
 
+
+
 <h3 id="routing">Routing</h3>
 
 <p>To setup your <strong>routes</strong>, use the <strong>syntax</strong> below:</p>
@@ -149,9 +151,11 @@
 
 
 
-<pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> Response *entry_point(<span class="hljs-keyword">const</span> Request &amp;req, Response &amp;res, <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span> args);</code></pre>
+<pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> Response *entry_point(<span class="hljs-keyword">const</span> Request &amp;req, Response &amp;res, <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;</span> &amp;args);</code></pre>
 
-<p>They should <code>return (&amp;res);</code> so you can pass data to other modules, but it is not mandatory. <br>
+<p>Prototype changelog: <a href="#fn:1" id="fnref:1" title="See footnote" class="footnote">1</a>
+
+</p><p>They should <code>return (&amp;res);</code> so you can pass data to other modules, but it is not mandatory. <br>
 The <code>Response</code> and <code>Request</code> <strong>classes</strong> must <strong>provide those functions</strong>:  <br>
 <br></p>
 
@@ -160,7 +164,7 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
 <pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Response {
 
     <span class="hljs-keyword">int</span>                     getStatusCode() <span class="hljs-keyword">const</span>;
-    <span class="hljs-keyword">void</span>                    setStatusCode(<span class="hljs-keyword">int</span> statusCode);
+    <span class="hljs-keyword">void</span>                    setStatusCode(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> statusCode);
 
 
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>             getStatusStr() <span class="hljs-keyword">const</span>;
@@ -176,13 +180,17 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
     <span class="hljs-keyword">void</span>                    removeHeader(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; header);
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
-    <span class="hljs-keyword">void</span>                    setBody(<span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span> body);
+    <span class="hljs-keyword">void</span>                    setBody(<span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span> &amp;body);
 
     <span class="hljs-keyword">void</span>                    send100() <span class="hljs-keyword">const</span>;
 
 };</code></pre>
 
-<hr>
+<p>Response class changelog: <a href="#fn:2" id="fnref:2" title="See footnote" class="footnote">2</a>
+
+</p><hr>
+
+<p></p>
 
 <pre class="prettyprint"><code class="language-c++ hljs cpp"><span class="hljs-keyword">class</span>                   Request {
 
@@ -198,5 +206,7 @@ The <code>Response</code> and <code>Request</code> <strong>classes</strong> must
 
     <span class="hljs-built_in">std</span>::<span class="hljs-stl_container"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">char</span>&gt;</span>       getBody() <span class="hljs-keyword">const</span>;
 
-};</code></pre></div></body>
+};</code></pre>
+
+<div class="footnotes"><hr><ol><li id="fn:1">11/12/2017 @ 10pm : added necessary consts and refs <a href="#fnref:1" title="Return to article" class="reversefootnote">↩</a></li><li id="fn:2">11/12/2017 @ 10pm : added necessary consts and refs <a href="#fnref:2" title="Return to article" class="reversefootnote">↩</a></li></ol></div></div></body>
 </html>
