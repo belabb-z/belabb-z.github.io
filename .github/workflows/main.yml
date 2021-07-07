@@ -1,0 +1,13 @@
+name: Angular Deploy gh-pages
+on:
+  push:
+    branches:
+      - test
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+      with:
+        base_href: ''
