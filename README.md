@@ -1,3 +1,3 @@
-# Zia API
+# EZDJ
 
-This is an API proposition for the Zia project in EPITECH.
+DJ web app with Youtube and Spotify integration.

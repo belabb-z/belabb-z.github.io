@@ -1,0 +1,19 @@
+{
+  "name": "ez-dj",
+  "version": "0.0.1",
+  "description": "DJ web app with Youtube and Spotify integration",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belabb-z/belabb-z.github.io.git"
+  },
+  "author": "belabb-z",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belabb-z/belabb-z.github.io/issues"
+  },
+  "homepage": "https://github.com/belabb-z/belabb-z.github.io#readme"
+}
