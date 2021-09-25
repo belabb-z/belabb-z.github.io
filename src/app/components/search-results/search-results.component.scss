@@ -1,0 +1,30 @@
+mat-list-item {
+    height: 100% !important;
+    // cursor: grab;
+    user-select: none;
+
+    // &:active {
+    //     cursor: grabbing;
+    // }
+
+    &:not(:last-child) {
+        margin-bottom: 8px;
+    }
+
+    mat-card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+
+        span {
+            margin-left: 8px;
+            margin-right: 8px;
+            user-select: text;
+        }
+
+        mat-icon {
+            margin-left: auto;
+        }
+    }
+}

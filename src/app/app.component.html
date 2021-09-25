@@ -1,16 +1,37 @@
-<mat-grid-list cols="5" rowHeight="25vh" gutterSize="0">
-    <mat-grid-tile colspan="2" rowspan="4" class="section-video-left">
+<mat-grid-list cols="13" rowHeight="12.5vh" gutterSize="0">
+    <mat-grid-tile colspan="5" rowspan="8" class="section-video-left">
+        <app-video-section [ready]="ready" id="videoPlayer1"></app-video-section>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="2" class="section-search">
+    <mat-grid-tile colspan="3" rowspan="5" class="section-search">
         <mat-card>
-            <mat-form-field>
-                <mat-label>Rechercher sur Youtube ou Spotify</mat-label>
-                <input type="search" matInput>
-            </mat-form-field>
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Rechercher sur Youtube ou Spotify</mat-label>
+                    <input type="search" autofocus spellcheck="false" matInput [formControl]="searchInputControl">
+                    <button mat-icon-button matSuffix (click)="search()">
+                        <mat-icon *ngIf="!resultsLoading; else loadingIcon">search</mat-icon>
+                        <ng-template #loadingIcon>
+                            <mat-icon class="loader">loop</mat-icon>
+                        </ng-template>
+                    </button>
+                </mat-form-field>
+                <app-search-results [ready]="ready" [query$]="searchInputQuery$" (loading)="resultsLoading = $event"></app-search-results>
+            </mat-card-content>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="4" class="section-video-left">
+    <mat-grid-tile colspan="5" rowspan="8" class="section-video-right">
+        <app-video-section [ready]="ready" id="videoPlayer2"></app-video-section>
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="2" class="section-controls">
+    <mat-grid-tile colspan="3" rowspan="3" class="section-controls">
+        <mat-card>
+            <mat-card-content>
+                <div class="volume-slider">
+                    <mat-icon>volume_up</mat-icon>
+                    <mat-slider vertical thumbLabel min="0" max="100" value="100"></mat-slider>
+                    <mat-icon class="volume-down-icon">volume_down</mat-icon>
+                </div>
+                <mat-slider min="0" max="100" value="50" thumbLabel [displayWith]="trackSwitchLabel" class="track-switch"></mat-slider>
+            </mat-card-content>
+        </mat-card>
     </mat-grid-tile>
 </mat-grid-list>

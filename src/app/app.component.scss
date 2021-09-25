@@ -1,5 +1,77 @@
 mat-grid-tile {
     &.section-search {
-        border-bottom: black solid 1px;
+        mat-card {
+            height: calc(100% - 70px + 8.75px);
+            width: calc(100% - 35px);
+            overflow-y: auto;
+            align-self: flex-end;
+            margin-bottom: 8.75px;
+
+            mat-form-field {
+                width: 100%;
+
+                .loader {
+                    animation: rotate-90-ccw 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+
+                    @keyframes rotate-90-ccw {
+                        0% {
+                            transform: rotate(0);
+                        }
+                        100% {
+                            transform: rotate(-360deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.section-video-left {
+        // background-color: red;
+    }
+
+    &.section-video-right {
+        // background-color: green;
+    }
+
+    app-video-section {
+        height: calc(100% - 35px);
+        width: calc(100% - 35px);
+    }
+
+    &.section-controls {
+        mat-card {
+            height: calc(100% - 70px + 8.75px);
+            width: calc(100% - 35px);
+            overflow-y: auto;
+            align-self: flex-start;
+            margin-top: 8.75px;
+
+            mat-card-content {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-between;
+                height: 100%;
+
+                .volume-slider {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: fit-content;
+                    margin: auto;
+
+                    .volume-down-icon {
+                        padding-bottom: 8px;
+                    }
+                    mat-divider {
+                        width: 100%;
+                    }
+                }
+
+                .track-switch {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
