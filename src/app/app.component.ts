@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   user = {
     spotifyConnected: true,
     deezerConnected: false,
-    soundCloudConnected: false,
   };
 
   constructor(
@@ -76,8 +75,6 @@ export class AppComponent implements OnInit {
         ).subscribe();
         break;
       case AuthProvider.Deezer:
-        break;
-      case AuthProvider.SoundCloud:
         break;
       default:
         console.error('invalid auth provider');

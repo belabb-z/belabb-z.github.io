@@ -16,10 +16,6 @@
             <mat-icon>{{ user.deezerConnected ? 'logout' : 'login' }}</mat-icon>
             <img src="/assets/deezer-logo.png" alt="Connect with Deezer" width="90">
         </button>
-        <button mat-menu-item class="login-button" [matTooltip]="(user.soundCloudConnected ? 'SOUNDCLOUD_LOGOUT' : 'SOUNDCLOUD_LOGIN') | translate" matTooltipPosition="before">
-            <img *ngIf="user.soundCloudConnected" src="/assets/soundcloud-disconnect.png" [alt]="'SOUNDCLOUD_LOGOUT' | translate" width="90">
-            <img *ngIf="!user.soundCloudConnected" src="/assets/soundcloud-connect.png" [alt]="'SOUNDCLOUD_LOGIN' | translate" width="90">
-        </button>
     </mat-menu>
 </mat-toolbar>
 
