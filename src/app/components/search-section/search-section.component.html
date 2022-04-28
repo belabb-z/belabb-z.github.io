@@ -1,8 +1,8 @@
-<form>
+<form novalidate>
     <mat-form-field appearance="outline">
         <mat-label translate="SEARCH_SECTION_SEARCH_INPUT_LABEL"></mat-label>
-        <input type="text" matInput formControlName="searchInput">
-        <button type="submit" mat-icon-button matSuffix (click)="search()">
+        <input type="text" matInput formControlName="searchInput" (keydown.enter)="search()">
+        <button type="button" mat-icon-button matSuffix (click)="search()">
             <mat-icon>search</mat-icon>
         </button>
     </mat-form-field>

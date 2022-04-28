@@ -4,19 +4,19 @@
     </button>
     <h1 translate="TITLE"></h1>
     <span class="spacer"></span>
-    <button mat-icon-button>
-        <img src="/assets/spotify-icon.svg" alt="Spotify" height="25" width="25">
+    <button mat-icon-button (click)="beginAuth(AuthProvider.Spotify)">
+        <img src="/assets/spotify-icon.svg" alt="Connect with Spotify" height="25" width="25">
     </button>
     <button mat-icon-button>
-        <img src="/assets/deezer-icon.svg" alt="Spotify" height="25" width="25">
+        <img src="/assets/deezer-icon.svg" alt="Connect with Deezer" height="25" width="25">
     </button>
     <button mat-icon-button>
-        <img src="/assets/soundcloud-icon.png" alt="Spotify" height="25" width="25">
+        <img src="/assets/soundcloud-icon.png" alt="Connect with SoundCloud" height="25" width="25">
     </button>
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'">
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [(opened)]="isSidenavOpen">
         <app-search-section></app-search-section>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
