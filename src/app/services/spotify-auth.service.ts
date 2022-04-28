@@ -11,7 +11,7 @@ export class SpotifyAuthService {
   private oidcClient = new UserManager({
     authority: 'https://accounts.spotify.com',
     client_id: 'c7663f9634e1478288158ea82d59d9fb',
-    redirect_uri: `${environment.production ? 'https' : this.document.location.protocol}://${this.document.location.host}/signin-callback`,
+    redirect_uri: `${environment.production ? 'https' : this.document.location.protocol}://${this.document.location.host}/spotify-signin-callback`,
     metadata: {
       issuer: 'https://accounts.spotify.com',
       authorization_endpoint: 'https://accounts.spotify.com/oauth2/v2/auth',
