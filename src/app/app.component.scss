@@ -1,76 +1,60 @@
-mat-grid-tile {
-    &.section-search {
-        mat-card {
-            height: calc(100% - 70px + 8.75px);
-            width: calc(100% - 35px);
-            overflow-y: auto;
-            align-self: flex-end;
-            margin-bottom: 8.75px;
+@use "@angular/material" as mat;
 
-            mat-form-field {
-                width: 100%;
+mat-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 
-                .loader {
-                    animation: rotate-90-ccw 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+    .spacer {
+        flex: 1 1 auto;
+    }
+}
 
-                    @keyframes rotate-90-ccw {
-                        0% {
-                            transform: rotate(0);
-                        }
-                        100% {
-                            transform: rotate(-360deg);
-                        }
-                    }
-                }
-            }
+mat-sidenav-container {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @media screen and (max-width: 600px) {
+        top: 56px;
+    }
+
+    mat-sidenav {
+        padding: 8px;
+
+        mat-expansion-panel {
+            margin-top: auto;
         }
     }
 
-    &.section-video-left {
-        // background-color: red;
-    }
+    mat-sidenav-content {
+        display: flex;
 
-    &.section-video-right {
-        // background-color: green;
-    }
+        @media screen and (max-width: 600px) {
+            flex-wrap: wrap;
+        }
 
-    app-video-section {
-        height: calc(100% - 35px);
-        width: calc(100% - 35px);
-    }
+        app-playlist-section {
+            flex: 1 1 25%;
+            padding: 8px;
 
-    &.section-controls {
-        mat-card {
-            height: calc(100% - 70px + 8.75px);
-            width: calc(100% - 35px);
-            overflow-y: auto;
-            align-self: flex-start;
-            margin-top: 8.75px;
+            @media screen and (max-width: 600px) {
+                flex: 1 1 100%;
+                height: calc(80% - 32px);
+            }
+        }
 
-            mat-card-content {
-                display: flex;
-                flex-flow: column nowrap;
-                justify-content: space-between;
-                height: 100%;
+        app-player-section {
+            flex: 1 1 50%;
+            padding: 8px;
 
-                .volume-slider {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: fit-content;
-                    margin: auto;
-
-                    .volume-down-icon {
-                        padding-bottom: 8px;
-                    }
-                    mat-divider {
-                        width: 100%;
-                    }
-                }
-
-                .track-switch {
-                    width: 100%;
-                }
+            @media screen and (max-width: 600px) {
+                flex: 1 1 100%;
+                height: calc(20% - 32px);
             }
         }
     }

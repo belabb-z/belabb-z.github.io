@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { of, Subject } from 'rxjs';
-import { ScriptLoaderService } from './services/script-loader.service';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -10,39 +11,32 @@ import { ScriptLoaderService } from './services/script-loader.service';
 })
 export class AppComponent implements OnInit {
 
-  public ready = false;
-
-  public resultsLoading = false;
-
-  public searchInputControl = new FormControl('');
-  public searchInputQuery$ = new Subject<string>();
+  private _mobileQueryListener: () => void;
+  mobileQuery: MediaQueryList = null!;;
 
   constructor(
-    private readonly scriptLoaderService: ScriptLoaderService
-  ) { }
+    private readonly translate: TranslateService,
+    private readonly titleService: Title,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    @Inject(DOCUMENT) document: Document,
+  ) {
+    translate.setDefaultLang('fr');
+    translate.use('fr');
+    document.body.lang = 'fr';
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+  }
 
   ngOnInit(): void {
-    of(this.scriptLoaderService.loadScript('youtube'))
-      .subscribe(() => {
-        this.ready = true;
-      });
+    this.translate.get('TITLE').subscribe(title => {
+      this.titleService.setTitle(title);
+    });
   }
 
-  public trackSwitchLabel(value: number): string {
-    if (value < 50) {
-      return '<';
-    }
-    if (value === 50) {
-      return '|';
-    }
-    if (value > 50) {
-      return '>';
-    }
-    return '?';
-  }
-
-  public search(): void {
-    this.searchInputQuery$.next(this.searchInputControl.value);
+  ngOnDestroy(): void {
+    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 
 }

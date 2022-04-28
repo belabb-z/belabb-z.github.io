@@ -1,4 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
-mat-list-item .mat-list-item-content {
-    padding: 0 !important;
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$sonor-palette-light: (
+    50: #e7e9f0,
+    100: #c2c9dc,
+    200: #9ba6c4,
+    300: #7584ac,
+    400: #58699b,
+    500: #3c518c,
+    600: #364984,
+    700: #2d4078,
+    800: #26366c,
+    900: #1c2654,
+    A100: #ffb07a,
+    A200: #f57f4c,
+    A400: #bd5020,
+    contrast:
+        (
+            50: white,
+            100: white,
+            200: white,
+            300: white,
+            400: white,
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white
+        ),
+);
+
+$sonor-primary: mat.define-palette($sonor-palette-light, 900);
+$sonor-secondary: mat.define-palette($sonor-palette-light, A200, A100, A400);
+
+$sonor-theme: mat.define-light-theme((
+    color: (
+        primary: $sonor-primary,
+        accent: $sonor-secondary
+    )
+));
+
+@include mat.all-component-themes($sonor-theme);
+
+.mat-drawer-inner-container {
+    display: flex !important;
+    flex-direction: column;
 }
