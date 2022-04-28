@@ -1,7 +1,10 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Log, UserManager } from 'oidc-client-ts';
+import { TranslateService } from '@ngx-translate/core';
+import { UserManager } from 'oidc-client-ts';
+import { defer, from, iif, Observable, of, throwError } from 'rxjs';
+import { map, mergeMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -26,30 +29,31 @@ export class SpotifyAuthService {
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly translate: TranslateService,
   ) { }
 
-  authenticate(): void {
-    Log.setLogger(console);
-    this.oidcClient.signinPopup().then((user) => {
-      console.error('authenticated');
-      console.error(user);
-      this.http.get('https://api.spotify.com/v1/me', {
+  authenticate(): Observable<void> {
+    return iif(() => environment.production,
+    defer(() => from(this.oidcClient.signinPopup())),
+    of({ access_token: environment.spotifyApiKey })).pipe(
+      mergeMap(({ access_token }) => this.http.get<{ product: string }>(`https://api.spotify.com/v1/me`, {
         headers: {
-          Authorization: `Bearer ${user.access_token}`
+          Authorization: `Bearer ${access_token}`
         }
-      }).subscribe((data) => {
-        console.error(data);
-      });
-    }).catch((err: any) => {
-      console.error(err);
-    });
+      })),
+      tap(({ product }) => {
+        if (product !== 'premium') {
+          throwError(new Error(this.translate.instant('SPOTIFY_AUTH_ERROR_NOT_PREMIUM')));
+        }
+      }),
+      map(() => undefined)
+    );
   }
 
   callback(): void {
-    this.oidcClient.signinPopupCallback().then((user) => {
+    this.oidcClient.signinPopupCallback().then(() => {
       console.error('callback');
-      console.error(user);
     }).catch((err: any) => {
       console.error(err);
     });

@@ -1,4 +1,4 @@
-# EzDj
+# Sonor
 
 DJ web app with Youtube and Spotify integration.
 

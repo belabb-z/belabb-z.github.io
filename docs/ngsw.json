@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1651133517617,
+  "timestamp": 1651142044365,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,8 +13,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2017.eb6df1d50d395bb37edd.js",
-        "/main-es5.eb6df1d50d395bb37edd.js",
+        "/main-es2017.eb06ba2902db0f99572b.js",
+        "/main-es5.eb06ba2902db0f99572b.js",
         "/manifest.webmanifest",
         "/polyfills-es2017.34b6caf9ced032a6162c.js",
         "/polyfills-es5.3e7e4d36c9139be1210b.js",
@@ -33,6 +33,7 @@
       },
       "urls": [
         "/assets/deezer-icon.svg",
+        "/assets/deezer-logo.png",
         "/assets/i18n/en.json",
         "/assets/i18n/fr.json",
         "/assets/icons/icon-128x128.png",
@@ -44,8 +45,13 @@
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
         "/assets/sonor-logo.png",
+        "/assets/soundcloud-connect.png",
+        "/assets/soundcloud-disconnect.png",
         "/assets/soundcloud-icon.png",
-        "/assets/spotify-icon.svg"
+        "/assets/spotify-icon.svg",
+        "/assets/spotify-logo-black.png",
+        "/assets/spotify-logo-green.png",
+        "/assets/spotify-logo-white.png"
       ],
       "patterns": []
     }
@@ -53,6 +59,7 @@
   "dataGroups": [],
   "hashTable": {
     "/assets/deezer-icon.svg": "ab9453088fd96dd25613b6927487f287037e4ebf",
+    "/assets/deezer-logo.png": "58bb3cf2a308b2bb4f1cb2520978eb7bd8ddb21e",
     "/assets/i18n/en.json": "8d8544cab8d92fba9c610205bb181a3beaa6b2e9",
     "/assets/i18n/fr.json": "50827f3ec689ec02908177c7f786274e646a058e",
     "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
@@ -64,12 +71,17 @@
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/sonor-logo.png": "557a173e3647c834618c94102ab27bb0d3721159",
+    "/assets/soundcloud-connect.png": "bd16af505ecea8f01540e55481ae2076f91b190b",
+    "/assets/soundcloud-disconnect.png": "c4008cfdd6e527a60bd8d893e390212db9f522e1",
     "/assets/soundcloud-icon.png": "d8797af6a00b4f50cdce5aa8f9408b33adba62d2",
     "/assets/spotify-icon.svg": "69af3394cf5ae3d542a695ac8d65eb65e160d3c1",
+    "/assets/spotify-logo-black.png": "c972e835a6ee944410d5b2b27a8ca4e537ed83ef",
+    "/assets/spotify-logo-green.png": "7f52082faaaab03b7c72ac8ee01be8c100fce09c",
+    "/assets/spotify-logo-white.png": "b2ca5d63d322953dba109cbc3a2430fbd4dbe803",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "3f9aa40b69f4e246846eba40cc12dfdc0612847d",
-    "/main-es2017.eb6df1d50d395bb37edd.js": "977a897e8878219dc5f22cfcf84b22838a780a8a",
-    "/main-es5.eb6df1d50d395bb37edd.js": "b0e6ed320b0e3305c6d1dee068282f568220ae97",
+    "/index.html": "41ac877a9789e089d1b1870b28e7818ae69f3a82",
+    "/main-es2017.eb06ba2902db0f99572b.js": "b19c914742740572b61efc986f81181cf2eb222a",
+    "/main-es5.eb06ba2902db0f99572b.js": "0a39680f7f627f4ca1dff287e26bee908a23e956",
     "/manifest.webmanifest": "40f6366febbd87ce704a668636a1dc0fca0780c4",
     "/polyfills-es2017.34b6caf9ced032a6162c.js": "10deaf207b6bc7e9b831b315acf00fa5f8533d95",
     "/polyfills-es5.3e7e4d36c9139be1210b.js": "a46728b41726499c5611eac9e63bd358eb6b060a",

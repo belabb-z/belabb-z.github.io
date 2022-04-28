@@ -4,15 +4,23 @@
     </button>
     <h1 translate="TITLE"></h1>
     <span class="spacer"></span>
-    <button mat-icon-button (click)="beginAuth(AuthProvider.Spotify)">
-        <img src="/assets/spotify-icon.svg" alt="Connect with Spotify" height="25" width="25">
+    <button mat-icon-button [matMenuTriggerFor]="loginOptionsMenu">
+        <mat-icon>login</mat-icon>
     </button>
-    <button mat-icon-button>
-        <img src="/assets/deezer-icon.svg" alt="Connect with Deezer" height="25" width="25">
-    </button>
-    <button mat-icon-button>
-        <img src="/assets/soundcloud-icon.png" alt="Connect with SoundCloud" height="25" width="25">
-    </button>
+    <mat-menu #loginOptionsMenu="matMenu">
+        <button mat-menu-item class="login-button" (click)="authenticate(AuthProvider.Spotify)" [matTooltip]="(user.spotifyConnected ? 'SPOTIFY_LOGOUT' : 'SPOTIFY_LOGIN') | translate" matTooltipPosition="before">
+            <mat-icon>{{ user.spotifyConnected ? 'logout' : 'login' }}</mat-icon>
+            <img src="/assets/spotify-logo-green.png" alt="Connect with Spotify" width="90">
+        </button>
+        <button mat-menu-item class="login-button" [matTooltip]="(user.deezerConnected ? 'DEEZER_LOGOUT' : 'DEEZER_LOGIN') | translate" matTooltipPosition="before">
+            <mat-icon>{{ user.deezerConnected ? 'logout' : 'login' }}</mat-icon>
+            <img src="/assets/deezer-logo.png" alt="Connect with Deezer" width="90">
+        </button>
+        <button mat-menu-item class="login-button" [matTooltip]="(user.soundCloudConnected ? 'SOUNDCLOUD_LOGOUT' : 'SOUNDCLOUD_LOGIN') | translate" matTooltipPosition="before">
+            <img *ngIf="user.soundCloudConnected" src="/assets/soundcloud-disconnect.png" [alt]="'SOUNDCLOUD_LOGOUT' | translate" width="90">
+            <img *ngIf="!user.soundCloudConnected" src="/assets/soundcloud-connect.png" [alt]="'SOUNDCLOUD_LOGIN' | translate" width="90">
+        </button>
+    </mat-menu>
 </mat-toolbar>
 
 <mat-sidenav-container>
