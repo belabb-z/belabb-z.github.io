@@ -16,7 +16,7 @@ export class SearchSectionComponent implements OnInit {
   }
 
   search(): void {
-    console.log('search');
+    console.error('search');
   }
 
 }

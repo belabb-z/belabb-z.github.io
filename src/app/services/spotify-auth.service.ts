@@ -17,8 +17,10 @@ export class SpotifyAuthService {
     metadata: {
       issuer: 'https://accounts.spotify.com',
       authorization_endpoint: 'https://accounts.spotify.com/oauth2/v2/auth',
+      token_endpoint: 'https://accounts.spotify.com/api/token',
       userinfo_endpoint: 'https://accounts.spotify.com/oidc/userinfo/v1',
       end_session_endpoint: 'https://accounts.spotify.com/oauth2/v2/logout',
+      revocation_endpoint: 'https://accounts.spotify.com/oauth2/revoke/v1',
     }
   });
 
@@ -30,14 +32,14 @@ export class SpotifyAuthService {
   authenticate(): void {
     Log.setLogger(console);
     this.oidcClient.signinPopup().then((user) => {
-      console.log('authenticated');
-      console.log(user);
+      console.error('authenticated');
+      console.error(user);
       this.http.get('https://api.spotify.com/v1/me', {
         headers: {
           Authorization: `Bearer ${user.access_token}`
         }
       }).subscribe((data) => {
-        console.log(data);
+        console.error(data);
       });
     }).catch((err: any) => {
       console.error(err);
@@ -46,8 +48,8 @@ export class SpotifyAuthService {
 
   callback(): void {
     this.oidcClient.signinPopupCallback().then((user) => {
-      console.log('callback');
-      console.log(user);
+      console.error('callback');
+      console.error(user);
     }).catch((err: any) => {
       console.error(err);
     });
