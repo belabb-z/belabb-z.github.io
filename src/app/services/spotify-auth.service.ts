@@ -1,4 +1,5 @@
 import { DOCUMENT } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Log, UserManager } from 'oidc-client-ts';
 import { environment } from 'src/environments/environment';
@@ -12,6 +13,7 @@ export class SpotifyAuthService {
     authority: 'https://accounts.spotify.com',
     client_id: 'c7663f9634e1478288158ea82d59d9fb',
     redirect_uri: `${environment.production ? 'https' : this.document.location.protocol}://${this.document.location.host}/spotify-signin-callback`,
+    scope: 'user-read-private streaming',
     metadata: {
       issuer: 'https://accounts.spotify.com',
       authorization_endpoint: 'https://accounts.spotify.com/oauth2/v2/auth',
@@ -22,6 +24,7 @@ export class SpotifyAuthService {
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
+    private readonly http: HttpClient
   ) { }
 
   authenticate(): void {
@@ -29,6 +32,13 @@ export class SpotifyAuthService {
     this.oidcClient.signinPopup().then((user) => {
       console.log('authenticated');
       console.log(user);
+      this.http.get('https://api.spotify.com/v1/me', {
+        headers: {
+          Authorization: `Bearer ${user.access_token}`
+        }
+      }).subscribe((data) => {
+        console.log(data);
+      });
     }).catch((err: any) => {
       console.error(err);
     });
@@ -41,5 +51,6 @@ export class SpotifyAuthService {
     }).catch((err: any) => {
       console.error(err);
     });
+
   }
 }
