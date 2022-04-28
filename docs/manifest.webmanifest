@@ -1,8 +1,8 @@
 {
-  "name": "ez-dj",
-  "short_name": "ez-dj",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Sonor music player",
+  "short_name": "Sonor",
+  "theme_color": "#1C2654",
+  "background_color": "#A7D8D8",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

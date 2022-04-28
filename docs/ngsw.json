@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1632605504662,
+  "timestamp": 1651128778094,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,14 +13,14 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2017.329dcb49d82aeb93ba58.js",
-        "/main-es5.329dcb49d82aeb93ba58.js",
+        "/main-es2017.39fca4bd3ac8198b82cf.js",
+        "/main-es5.39fca4bd3ac8198b82cf.js",
         "/manifest.webmanifest",
-        "/polyfills-es2017.264bca71a38f8cfe2982.js",
-        "/polyfills-es5.1f493ab40f7cf97a666a.js",
-        "/runtime-es2017.9ca485f0040668427781.js",
-        "/runtime-es5.9ca485f0040668427781.js",
-        "/styles.cbb829b4e505407f5d7c.css"
+        "/polyfills-es2017.421a49af44a8e8034de2.js",
+        "/polyfills-es5.00c498bd0cdc037cac16.js",
+        "/runtime-es2017.888ae9c8282ccf5cf5f6.js",
+        "/runtime-es5.888ae9c8282ccf5cf5f6.js",
+        "/styles.6cdb2484d5238258e11b.css"
       ],
       "patterns": []
     },
@@ -32,6 +32,9 @@
         "ignoreVary": true
       },
       "urls": [
+        "/assets/deezer-icon.svg",
+        "/assets/i18n/en.json",
+        "/assets/i18n/fr.json",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -39,13 +42,19 @@
         "/assets/icons/icon-384x384.png",
         "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
-        "/assets/icons/icon-96x96.png"
+        "/assets/icons/icon-96x96.png",
+        "/assets/sonor-logo.png",
+        "/assets/soundcloud-icon.png",
+        "/assets/spotify-icon.svg"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
+    "/assets/deezer-icon.svg": "ab9453088fd96dd25613b6927487f287037e4ebf",
+    "/assets/i18n/en.json": "8d8544cab8d92fba9c610205bb181a3beaa6b2e9",
+    "/assets/i18n/fr.json": "50827f3ec689ec02908177c7f786274e646a058e",
     "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -54,16 +63,19 @@
     "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/assets/sonor-logo.png": "557a173e3647c834618c94102ab27bb0d3721159",
+    "/assets/soundcloud-icon.png": "d8797af6a00b4f50cdce5aa8f9408b33adba62d2",
+    "/assets/spotify-icon.svg": "69af3394cf5ae3d542a695ac8d65eb65e160d3c1",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "23e39a644821cb5dcaf37247b6fa0420910e888c",
-    "/main-es2017.329dcb49d82aeb93ba58.js": "e6479020a99f3bd475b6c90af4c51d90a093ae88",
-    "/main-es5.329dcb49d82aeb93ba58.js": "e0a34372007c320891e97e17f7dba457429d8f77",
-    "/manifest.webmanifest": "cc4ef5abf119e09596c9485a2ef7465784b166e9",
-    "/polyfills-es2017.264bca71a38f8cfe2982.js": "f05b232a5cc01465ee837503aea6226e6b990918",
-    "/polyfills-es5.1f493ab40f7cf97a666a.js": "279b5a5cd276d1be373ab08317fae546e97a7465",
-    "/runtime-es2017.9ca485f0040668427781.js": "4e29cee250f9fbe0973e367772bdfe49d6fda52d",
-    "/runtime-es5.9ca485f0040668427781.js": "4e29cee250f9fbe0973e367772bdfe49d6fda52d",
-    "/styles.cbb829b4e505407f5d7c.css": "15bee7c9b74f0ec7c465f38b44aa12ffa7d988d5"
+    "/index.html": "37766c017db33f2fe0687df95274a327835d160d",
+    "/main-es2017.39fca4bd3ac8198b82cf.js": "0b7c2e44359c17ee6217abc138fe0fec2e10e153",
+    "/main-es5.39fca4bd3ac8198b82cf.js": "700f731bd9a3c8bdfaffe712550e0cade9e4624e",
+    "/manifest.webmanifest": "40f6366febbd87ce704a668636a1dc0fca0780c4",
+    "/polyfills-es2017.421a49af44a8e8034de2.js": "ae332aeca73e7e7256a1212d460311e58db1273c",
+    "/polyfills-es5.00c498bd0cdc037cac16.js": "e395848af946c46c18fdb1c7f3fa10c6de30efa4",
+    "/runtime-es2017.888ae9c8282ccf5cf5f6.js": "170cf5c8fede65e63b8298acfc26db606f019881",
+    "/runtime-es5.888ae9c8282ccf5cf5f6.js": "170cf5c8fede65e63b8298acfc26db606f019881",
+    "/styles.6cdb2484d5238258e11b.css": "449f754277df1709de399246f41c9be9ffe30d6c"
   },
   "navigationUrls": [
     {
