@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SpotifySigninCallbackComponent } from './components/signin-callbacks/spotify-signin-callback/spotify-signin-callback.component';
 
 const routes: Routes = [
   {
-    path: 'signin-callback',
-    redirectTo: '',
-    pathMatch: 'full',
+    path: 'spotify-signin-callback',
+    component: SpotifySigninCallbackComponent
   },
   {
     path: '**',

@@ -33,4 +33,13 @@ export class SpotifyAuthService {
       console.error(err);
     });
   }
+
+  callback(): void {
+    this.oidcClient.signinPopupCallback().then((user) => {
+      console.log('callback');
+      console.log(user);
+    }).catch((err: any) => {
+      console.error(err);
+    });
+  }
 }

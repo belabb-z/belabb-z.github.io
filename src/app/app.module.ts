@@ -22,6 +22,7 @@ import { PlayLaterSectionComponent } from './components/play-later-section/play-
 import { PlayerSectionComponent } from './components/player-section/player-section.component';
 import { PlaylistSectionComponent } from './components/playlist-section/playlist-section.component';
 import { SearchSectionComponent } from './components/search-section/search-section.component';
+import { SpotifySigninCallbackComponent } from './components/signin-callbacks/spotify-signin-callback/spotify-signin-callback.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PlayLaterSectionComponent,
     PlayerSectionComponent,
     PlaylistSectionComponent,
+    SpotifySigninCallbackComponent,
   ],
   imports: [
     BrowserModule,
