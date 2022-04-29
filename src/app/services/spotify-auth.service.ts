@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserManager } from 'oidc-client-ts';
-import { defer, from, iif, Observable, of, throwError } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { bindCallback, defer, from, iif, Observable, of, throwError } from 'rxjs';
+import { map, mergeMap, repeatWhen, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -60,8 +60,16 @@ export class SpotifyAuthService {
   }
 
   hasToken(): Observable<boolean> {
+    this.oidcClient.events.addUserSignedIn(this.userSignedInCallback);
+    const userSignedIn = bindCallback(this.userSignedInCallback);
+    
     return from(this.oidcClient.getUser()).pipe(
+      repeatWhen(() => userSignedIn()),
       map(user => !!user && !user.expired),
     );
+  }
+
+  private userSignedInCallback(): void {
+    console.error('userSignedInCallback');
   }
 }
