@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1651143199273,
+  "timestamp": 1651195270814,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,8 +13,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2017.17ba2fcb16d22482755a.js",
-        "/main-es5.17ba2fcb16d22482755a.js",
+        "/main-es2017.c31eef5a0b8210e91f0c.js",
+        "/main-es5.c31eef5a0b8210e91f0c.js",
         "/manifest.webmanifest",
         "/polyfills-es2017.34b6caf9ced032a6162c.js",
         "/polyfills-es5.3e7e4d36c9139be1210b.js",
@@ -73,9 +73,9 @@
     "/assets/spotify-logo-green.png": "7f52082faaaab03b7c72ac8ee01be8c100fce09c",
     "/assets/spotify-logo-white.png": "b2ca5d63d322953dba109cbc3a2430fbd4dbe803",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "367020246e4cd8768c8dc0d95c3bf21d8e00a835",
-    "/main-es2017.17ba2fcb16d22482755a.js": "7a63844a9f5738fa382bb2b535f6937c6f288dde",
-    "/main-es5.17ba2fcb16d22482755a.js": "61bc1b57d7124cfb1cf02a76a7d5e8bfc782685a",
+    "/index.html": "b97038a7302a34f7b27f6d0c0b5fe1ef2d4dae83",
+    "/main-es2017.c31eef5a0b8210e91f0c.js": "039e9769ce38be6fa03bb1c5d98924ece504af3b",
+    "/main-es5.c31eef5a0b8210e91f0c.js": "6cf2d2260d42ef1f2a0f90550be8627178dce8b5",
     "/manifest.webmanifest": "40f6366febbd87ce704a668636a1dc0fca0780c4",
     "/polyfills-es2017.34b6caf9ced032a6162c.js": "10deaf207b6bc7e9b831b315acf00fa5f8533d95",
     "/polyfills-es5.3e7e4d36c9139be1210b.js": "a46728b41726499c5611eac9e63bd358eb6b060a",
