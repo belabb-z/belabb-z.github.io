@@ -57,6 +57,11 @@ export class SpotifyAuthService {
     }).catch((err: any) => {
       console.error(err);
     });
+  }
 
+  hasToken(): Observable<boolean> {
+    return from(this.oidcClient.getUser()).pipe(
+      map(user => !!user && !user.expired),
+    );
   }
 }

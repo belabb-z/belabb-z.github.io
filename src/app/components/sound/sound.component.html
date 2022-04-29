@@ -4,4 +4,12 @@
         <mat-card-subtitle>{{ artist }}</mat-card-subtitle>
         <img mat-card-sm-image [src]="thumbnail" alt="">
     </mat-card-title-group>
+    <mat-card-actions [style.display]="'flex'">
+        <button mat-icon-button type="button" matTooltip="{{ 'ADD_WATCH_LATER_BUTTON_TOOLTIP' | translate }}" title="">
+            <mat-icon>watch_later</mat-icon>
+        </button>
+        <button mat-icon-button type="button" [style.margin-left]="'auto'" matTooltip="{{ 'ADD_PLAYLIST_BUTTON_TOOLTIP' | translate }}" title="">
+            <mat-icon>playlist_add</mat-icon>
+        </button>
+    </mat-card-actions>
 </mat-card>

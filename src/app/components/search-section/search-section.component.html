@@ -1,10 +1,24 @@
-<form novalidate>
+<form novalidate [formGroup]="searchParams">
     <mat-form-field appearance="outline">
         <mat-label translate="SEARCH_SECTION_SEARCH_INPUT_LABEL"></mat-label>
-        <input type="text" matInput formControlName="searchInput" (keydown.enter)="search()">
+        <input type="text" matInput formControlName="query" (keydown.enter)="search()">
         <button type="button" mat-icon-button matSuffix (click)="search()">
             <mat-icon>search</mat-icon>
         </button>
+        <section class="provider-filters">
+            <div [style.height.px]="21" [style.margin-top.px]="8">
+                <mat-checkbox formControlName="withSpotify">
+                    <img src="/assets/spotify-icon.svg" width="21" height="21" [style.margin-left.px]="12" [style.vertical-align]="'middle'">
+                </mat-checkbox>
+            </div>
+            <div [style.height.px]="21" [style.margin-top.px]="8">
+                <mat-checkbox formControlName="withDeezer">
+                    <img src="/assets/deezer-icon.svg" width="21" height="21" [style.margin-left.px]="12" [style.vertical-align]="'middle'">
+                </mat-checkbox>
+            </div>
+        </section>
     </mat-form-field>
-    <app-sound thumbnail="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" title="Better now" artist="Post Malone"></app-sound>
 </form>
+
+<app-sound thumbnail="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228" title="Better now"
+           artist="Post Malone"></app-sound>

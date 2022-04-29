@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -26,6 +27,7 @@ import { PlaylistSectionComponent } from './components/playlist-section/playlist
 import { SearchSectionComponent } from './components/search-section/search-section.component';
 import { SpotifySigninCallbackComponent } from './components/signin-callbacks/spotify-signin-callback/spotify-signin-callback.component';
 import { SoundComponent } from './components/sound/sound.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'fr',
     }),
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -71,7 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDividerModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCheckboxModule,
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
